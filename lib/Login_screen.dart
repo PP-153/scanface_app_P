@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'Register_screen.dart';
+import 'register_screen.dart'; // สมมุติมีไฟล์นี้อยู่
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -33,15 +33,15 @@ class _LoginScreenState extends State<LoginScreen> {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found' || e.code == 'invalid-email') {
         setState(() {
-          emailError = 'Email is incorrect or not found';
+          emailError = 'Email ไม่ถูกต้อง หรือไม่พบผู้ใช้งาน';
         });
       } else if (e.code == 'wrong-password') {
         setState(() {
-          passwordError = 'Password is incorrect';
+          passwordError = 'รหัสผ่านไม่ถูกต้อง';
         });
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Login failed: ${e.message}')),
+        SnackBar(content: Text('Login ล้มเหลว: ${e.message}')),
       );
     }
   }
@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.pushReplacementNamed(context, '/home');
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Google Sign-In failed: $e')),
+        SnackBar(content: Text('Google Sign-In ล้มเหลว: $e')),
       );
     }
   }
@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   );
                 },
                 child: const Text(
-                  "Don’t have an account? Register",
+                  "don't have an accout? , Register",
                   style: TextStyle(color: Colors.black),
                 ),
               ),
